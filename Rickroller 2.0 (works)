@@ -1,0 +1,26 @@
+/**
+ * Simple function to generate a usable video link from a given video URL.
+ * For demonstration, this will convert YouTube links to their embed format.
+ * Extend logic for other platforms as needed.
+ */
+
+function generateUsableVideoLink(inputUrl) {
+    try {
+        const ytMatch = inputUrl.match(
+            /(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]{11})/
+        );
+        if (ytMatch) {
+            // YouTube embed link
+            return `https://www.youtube.com/embed/${ytMatch[1]}`;
+        }
+        // Add more platforms as needed
+        return inputUrl; // fallback: return original if not recognized
+    } catch (e) {
+        return inputUrl;
+    }
+}
+
+// Example usage:
+const inputLink = "https://www.youtube.com/watch?v=lOuEasBNaQA";
+const usableLink = generateUsableVideoLink(inputLink);
+console.log(usableLink); // https://www.youtube.com/embed/lOuEasBNaQA
