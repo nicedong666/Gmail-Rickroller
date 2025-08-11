@@ -1,0 +1,42 @@
+/**
+ * Gmail Rickroller Link Generator
+ * Generates a random-looking link that redirects to the Rickroll video.
+ * Usage: Open index.html in your browser and click the generated link.
+ */
+
+const rickrollUrl = "https://www.youtube.com/watch?v=lOuEasBNaQA";
+
+// Function to generate a random-looking Gmail-style link
+function generateRandomLink() {
+    const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+    let randomStr = "";
+    for (let i = 0; i < 16; i++) {
+        randomStr += chars[Math.floor(Math.random() * chars.length)];
+    }
+    return `https://mail.google.com/mail/u/0/#inbox/${randomStr}`;
+}
+
+// Create the link element
+const link = document.createElement("a");
+link.href = "#";
+link.textContent = "Open Gmail Link";
+link.style.fontSize = "1.5em";
+link.style.display = "block";
+link.style.margin = "50px auto";
+link.style.textAlign = "center";
+
+// On click, redirect to Rickroll video
+link.onclick = function(e) {
+    e.preventDefault();
+    window.location.href = rickrollUrl;
+};
+
+// Add the link to the page
+document.body.appendChild(link);
+
+// Optionally, display the random link (for fun)
+const info = document.createElement("div");
+info.textContent = `Generated link: ${generateRandomLink()}`;
+info.style.textAlign = "center";
+info.style.marginTop = "20px";
+document.body.appendChild(info);
